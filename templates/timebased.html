@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{% block title %}Time-Based Analysis{% endblock %}
+
+{% block extra_css %}
+<style>
+    .dashboard-header {
+        text-align: center;
+        color: #fff;
+        margin-bottom: 2rem;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
+
+    .chart-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+
+    .chart-card {
+        background: #fff;
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        transition: transform 0.2s;
+    }
+
+    .chart-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .chart-card h3 {
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
+    }
+
+    .time-filters {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .time-filter-btn {
+        background: rgba(255, 255, 255, 0.9);
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        color: var(--primary-color);
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+
+    .time-filter-btn:hover {
+        background: var(--primary-color);
+        color: #fff;
+    }
+
+    .insights-panel {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .insights-panel h2 {
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+    }
+
+    @media (max-width: 768px) {
+        .chart-grid {
+            grid-template-columns: 1fr;
+        }
+        .time-filters {
+            flex-wrap: wrap;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-header">
+    <h1>Time-Based Analysis</h1>
+    <p>Analysis of traffic patterns and incidents across different times of day</p>
+</div>
+
+<div class="insights-panel">
+    <h2>Temporal Insights</h2>
+    <p>This dashboard provides detailed analysis of how traffic patterns, accidents, and fines vary across different times of the day, helping identify peak hours and risk periods.</p>
+</div>
+
+<div class="time-filters">
+    <button class="time-filter-btn">Morning Peak</button>
+    <button class="time-filter-btn">Afternoon</button>
+    <button class="time-filter-btn">Evening Peak</button>
+    <button class="time-filter-btn">Night</button>
+</div>
+
+<div class="chart-grid">
+    <div class="chart-card">
+        <h3>Accidents Distribution by Time of Day</h3>
+        {{ graph21 | safe }}
+    </div>
+
+    <div class="chart-card">
+        <h3>Traffic Fine Distribution by Time</h3>
+        {{ graph22 | safe }}
+    </div>
+
+    <div class="chart-card">
+        <h3>Traffic Density Patterns</h3>
+        {{ graph23 | safe }}
+    </div>
+</div>
+{% endblock %}

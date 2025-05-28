@@ -282,7 +282,7 @@ def trafficflow():
     graph14 = Vehicle_count_vs_average_speed()
     graph15 = Traffic_lights_vs_traffic_density()
     graph16 = Traffic_density_vs_urban_area()
-    return render_template('traffic.html' , graph13=graph13,graph14=graph14, graph15=graph15, graph16=graph16)
+    return render_template('traficflow.html' , graph13=graph13,graph14=graph14, graph15=graph15, graph16=graph16)
 
 @app.route('/correlation')   
 def correlation():

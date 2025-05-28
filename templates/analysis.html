@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Environmental Impact Analysis{% endblock %}
+{% block title %}Accident Analysis{% endblock %}
 
 {% block extra_css %}
 <style>
@@ -31,13 +31,6 @@
         font-size: 1.2rem;
     }
 
-    .info-panel {
-        background: rgba(255, 255, 255, 0.9);
-        border-radius: 12px;
-        padding: 1.5rem;
-        margin-bottom: 2rem;
-    }
-
     @media (max-width: 768px) {
         .chart-grid {
             grid-template-columns: 1fr;
@@ -48,34 +41,29 @@
 
 {% block content %}
 <div class="dashboard-header">
-    <h1>Environmental Impact Analysis</h1>
-    <p>Analysis of weather conditions and their impact on traffic patterns</p>
-</div>
-
-<div class="info-panel">
-    <h2>Environmental Factors Analysis</h2>
-    <p>This dashboard shows the relationships between environmental conditions and traffic patterns, helping identify how weather affects road safety and traffic flow.</p>
+    <h1>Accident Analysis Dashboard</h1>
+    <p>Comprehensive analysis of traffic accidents and related factors</p>
 </div>
 
 <div class="chart-grid">
     <div class="chart-card">
-        <h3>Rain Intensity vs Traffic Density</h3>
-        {{ graph5 | safe }}
+        <h3>Accidents by Time of Day</h3>
+        {{ graph1 | safe }}
     </div>
 
     <div class="chart-card">
-        <h3>Rain Intensity vs Average Speed</h3>
-        {{ graph6 | safe }}
+        <h3>Accidents vs Traffic Density</h3>
+        {{ graph2 | safe }}
     </div>
 
     <div class="chart-card">
-        <h3>Pavement Quality vs Accidents</h3>
-        {{ graph7 | safe }}
+        <h3>Accidents vs Rain Intensity</h3>
+        {{ graph3 | safe }}
     </div>
 
     <div class="chart-card">
-        <h3>Rain Intensity vs Accidents</h3>
-        {{ graph8 | safe }}
+        <h3>Accidents by Urban Area</h3>
+        {{ graph4 | safe }}
     </div>
 </div>
 {% endblock %}

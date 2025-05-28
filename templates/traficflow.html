@@ -1,23 +1,108 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Traffic flow Analysis</title>
-    
-    </head>
-<body>
-      
-    {{graph13|safe}}
-    {{graph14|safe}}
-    {{graph15|safe}}
-    {{graph16|safe}}
-    
-    
+{% block title %}Traffic Flow Analysis{% endblock %}
 
-    
+{% block extra_css %}
+<style>
+    .dashboard-header {
+        text-align: center;
+        color: #fff;
+        margin-bottom: 2rem;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
 
+    .chart-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+    }
 
-</body>
-</html>
+    .chart-card {
+        background: #fff;
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        transition: transform 0.2s;
+    }
+
+    .chart-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .chart-card h3 {
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
+    }
+
+    .traffic-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .stat-card {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 8px;
+        padding: 1rem;
+        text-align: center;
+    }
+
+    .stat-card h4 {
+        color: var(--primary-color);
+        margin: 0 0 0.5rem 0;
+    }
+
+    @media (max-width: 768px) {
+        .chart-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-header">
+    <h1>Traffic Flow Analysis</h1>
+    <p>Comprehensive analysis of traffic patterns and flow dynamics</p>
+</div>
+
+<div class="traffic-stats">
+    <div class="stat-card">
+        <h4>Traffic Density</h4>
+        <p>Current flow patterns</p>
+    </div>
+    <div class="stat-card">
+        <h4>Vehicle Speed</h4>
+        <p>Average speed analysis</p>
+    </div>
+    <div class="stat-card">
+        <h4>Urban Areas</h4>
+        <p>Location-based metrics</p>
+    </div>
+</div>
+
+<div class="chart-grid">
+    <div class="chart-card">
+        <h3>Traffic Density vs Time of Day</h3>
+        {{ graph13 | safe }}
+    </div>
+
+    <div class="chart-card">
+        <h3>Vehicle Count vs Average Speed</h3>
+        {{ graph14 | safe }}
+    </div>
+
+    <div class="chart-card">
+        <h3>Traffic Lights vs Traffic Density</h3>
+        {{ graph15 | safe }}
+    </div>
+
+    <div class="chart-card">
+        <h3>Traffic Density vs Urban Area</h3>
+        {{ graph16 | safe }}
+    </div>
+</div>
+{% endblock %}

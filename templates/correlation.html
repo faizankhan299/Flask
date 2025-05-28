@@ -1,17 +1,91 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Correlation and Predictive Analysis</title>
+{% extends "base.html" %}
 
-    </head>
-<body>
-        {{graph17|safe}}
-        {{graph18|safe}}
-        {{graph19|safe}}
-        {{graph20|safe}}
-        
-   
-    </body>
-</html>
+{% block title %}Correlation and Predictive Analysis{% endblock %}
+
+{% block extra_css %}
+<style>
+    .dashboard-header {
+        text-align: center;
+        color: #fff;
+        margin-bottom: 2rem;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
+
+    .chart-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+
+    .chart-card {
+        background: #fff;
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .chart-card h3 {
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
+    }
+
+    .analysis-info {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .analysis-info h2 {
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+    }
+
+    .analysis-info p {
+        color: var(--text-color);
+        line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+        .chart-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-header">
+    <h1>Correlation and Predictive Analysis</h1>
+    <p>Advanced analysis of relationships between different traffic factors</p>
+</div>
+
+<div class="analysis-info">
+    <h2>Understanding Correlations</h2>
+    <p>This dashboard presents detailed analyses of relationships between various traffic-related variables, helping identify patterns and potential causative factors in traffic incidents.</p>
+</div>
+
+<div class="chart-grid">
+    <div class="chart-card">
+        <h3>Accidents vs Traffic Density Analysis</h3>
+        {{ graph17 | safe }}
+    </div>
+
+    <div class="chart-card">
+        <h3>Correlation Matrix Heatmap</h3>
+        {{ graph18 | safe }}
+    </div>
+
+    <div class="chart-card">
+        <h3>Vehicle Count vs Average Speed Regression</h3>
+        {{ graph19 | safe }}
+    </div>
+
+    <div class="chart-card">
+        <h3>3D Analysis: Rain, Traffic, and Accidents</h3>
+        {{ graph20 | safe }}
+    </div>
+</div>
+{% endblock %}

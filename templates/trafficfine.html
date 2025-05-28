@@ -1,20 +1,104 @@
-<!DOCTYPE html>
-<html lang="en">
-    
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Traffic Fine Analysis</title>
-    </head>
-<body>
+{% extends "base.html" %}
 
-    {{graph9|safe}}
-    {{graph10|safe}}
-    {{graph11|safe}}
-    {{graph12|safe}}
-    
-     
+{% block title %}Traffic Fine Analysis{% endblock %}
 
-</body>
-</html>
+{% block extra_css %}
+<style>
+    .dashboard-header {
+        text-align: center;
+        color: #fff;
+        margin-bottom: 2rem;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
+
+    .chart-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+
+    .chart-card {
+        background: #fff;
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .chart-card h3 {
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
+    }
+
+    .summary-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .stat-card {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 8px;
+        padding: 1rem;
+        text-align: center;
+    }
+
+    .stat-card h4 {
+        color: var(--primary-color);
+        margin: 0 0 0.5rem 0;
+    }
+
+    @media (max-width: 768px) {
+        .chart-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-header">
+    <h1>Traffic Fine Analysis</h1>
+    <p>Analysis of traffic violations and fine distributions</p>
+</div>
+
+<div class="summary-stats">
+    <div class="stat-card">
+        <h4>Fine Distribution</h4>
+        <p>Analysis of traffic fine amounts and patterns</p>
+    </div>
+    <div class="stat-card">
+        <h4>Time Patterns</h4>
+        <p>Fine distribution across different times</p>
+    </div>
+    <div class="stat-card">
+        <h4>Correlation Analysis</h4>
+        <p>Relationship between fines and other factors</p>
+    </div>
+</div>
+
+<div class="chart-grid">
+    <div class="chart-card">
+        <h3>Traffic Fine Amount Distribution</h3>
+        {{ graph9 | safe }}
+    </div>
+
+    <div class="chart-card">
+        <h3>Traffic Fine Amount vs Traffic Density</h3>
+        {{ graph10 | safe }}
+    </div>
+
+    <div class="chart-card">
+        <h3>Traffic Fine Amount vs Pavement Quality</h3>
+        {{ graph11 | safe }}
+    </div>
+
+    <div class="chart-card">
+        <h3>Traffic Fine Amount by Time of Day</h3>
+        {{ graph12 | safe }}
+    </div>
+</div>
+{% endblock %}
     
